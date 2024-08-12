@@ -42,7 +42,7 @@ function App() {
 
   return (
     <>
-      <h1>Glad to hlep you :)</h1>
+      <h1>Scientific Calculator</h1>
 
       {/* Normal calculator code */}
 
@@ -52,7 +52,7 @@ function App() {
         </div>
 
         <button className='main-btn btn' onClick={() => setValue('')}>AC</button>
-        <button className='btn' onClick={() => setValue(value.slice(0, -1))}>DEL</button>
+        <button className='btn' onClick={() => setValue((value[value.length-1] == '(' ? value.slice(0, -1) : (value[value.length-1] == 't' ? value.slice(0, -9) : (value[value.length-1] == 'n' || value[value.length-1] == 's' ? value.slice(0, -8) : value.slice(0, -1)))))}>DEL</button>
         <button className='btn' onClick={() => setValue(value + '+')}>+</button>
         <button className='btn' onClick={() => setValue(value + '1')}>1</button>
         <button className='btn' onClick={() => setValue(value + '2')}>2</button>
@@ -82,17 +82,19 @@ function App() {
           {value}
         </div>
 
+        {/* value.slice(0, -1) */}
+
         <button className='main-btn btn' onClick={() => setValue('')}>AC</button>
-        <button className='btn' onClick={() => setValue(value.slice(0, -1))}>DEL</button>
+        <button className='btn' onClick={() => setValue((value[value.length-1] == '(' ? value.slice(0, -1) : (value[value.length-1] == 't' ? value.slice(0, -9) : (value[value.length-1] == 'n' || value[value.length-1] == 's' ? value.slice(0, -8) : value.slice(0, -1)))))}>DEL</button>
         <button className='btn' onClick={() => setValue(value * value)}>x²</button>
         <button className='btn' onClick={() => setValue((value == '') ? value + '(' : value + '*(')}>(</button>
         <button className='btn' onClick={() => setValue(value + ')')}>)</button>
-        <button className='btn' onClick={() => setValue(value + 'Math.sqrt(')}>√</button>
-        <button className='btn' onClick={() => setValue(value + 'Math.cbrt(')}>∛</button>
+        <button className='btn' onClick={() => setValue((value == '') ? value + 'Math.sqrt(' : (value[value.length - 1] == '+' || value[value.length - 1] == '-' || value[value.length - 1] == '*' || value[value.length - 1] == '/' || value[value.length - 1] == '%' || value[value.length - 1] == '(') ? value + 'Math.sqrt(' : value + '*Math.sqrt(')}>√</button>
+        <button className='btn' onClick={() => setValue((value == '') ? value + 'Math.cbrt(' : (value[value.length - 1] == '+' || value[value.length - 1] == '-' || value[value.length - 1] == '*' || value[value.length - 1] == '/' || value[value.length - 1] == '%' || value[value.length - 1] == '(') ? value + 'Math.cbrt(' : value + '*Math.cbrt(')}>∛</button>
         <button className='btn' onClick={() => setValue(value + ' 3.14')}>π</button>
-        <button className='btn' onClick={() => setValue(value + 'Math.sin(')}>sin</button>
-        <button className='btn' onClick={() => setValue(value + 'Math.cos(')}>cos</button>
-        <button className='btn' onClick={() => setValue(value + 'Math.tan(')}>tan</button>
+        <button className='btn' onClick={() => setValue((value == '') ? value + 'Math.sin(' : (value[value.length - 1] == '+' || value[value.length - 1] == '-' || value[value.length - 1] == '*' || value[value.length - 1] == '/' || value[value.length - 1] == '%' || value[value.length - 1] == '(') ? value + 'Math.sin(' : value + '*Math.sin(')}>sin</button>
+        <button className='btn' onClick={() => setValue((value == '') ? value + 'Math.cos(' : (value[value.length - 1] == '+' || value[value.length - 1] == '-' || value[value.length - 1] == '*' || value[value.length - 1] == '/' || value[value.length - 1] == '%' || value[value.length - 1] == '(') ? value + 'Math.cos(' : value + '*Math.cos(')}>cos</button>
+        <button className='btn' onClick={() => setValue((value == '') ? value + 'Math.tan(' : (value[value.length - 1] == '+' || value[value.length - 1] == '-' || value[value.length - 1] == '*' || value[value.length - 1] == '/' || value[value.length - 1] == '%' || value[value.length - 1] == '(') ? value + 'Math.tan(' : value + '*Math.tan(')}>tan</button>
         <button className='btn' onClick={() => fact(value)}>x!</button>
         <button className='btn' onClick={() => setValue(value + '%')}>%</button>
         {/* <button className='btn' onClick={() => setValue(value + '')}></button>
