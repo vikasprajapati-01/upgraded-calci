@@ -24,9 +24,25 @@ function App() {
     setView(!view);
   }
 
+  const handleEvaluate = () => {
+    try {
+      setValue(eval(value));
+    } catch (error) {
+      console.error("Syntax error in calculation:", error);
+      alert("Invalid input");
+    }
+  }
+
+  function fact(value) {
+    for(let i = value - 1; i>=1; i--) {
+      value = i * value;
+    }
+    setValue(value);
+  }
+
   return (
     <>
-      <h1>Perform as much calculations as you can !!!</h1>
+      <h1>Glad to hlep you :)</h1>
 
       {/* Normal calculator code */}
 
@@ -34,6 +50,7 @@ function App() {
         <div className="display">
           {value}
         </div>
+
         <button className='main-btn btn' onClick={() => setValue('')}>AC</button>
         <button className='btn' onClick={() => setValue(value.slice(0, -1))}>DEL</button>
         <button className='btn' onClick={() => setValue(value + '+')}>+</button>
@@ -51,7 +68,7 @@ function App() {
         <button className='btn' onClick={() => setValue(value + '/')}>/</button>
         <button className='btn' onClick={() => setValue(value + '0')}>0</button>
         <button className='btn' onClick={() => setValue(value + '.')}>.</button>
-        <button className='main-btn btn' onClick={() => setValue(eval(value))}>=</button>
+        <button className='main-btn btn' onClick={() => handleEvaluate()}>=</button>
         <div className="diff-func">
           <div className="change"  onClick={() => displayType()}>{(view == true) ? 'fx' : '123'}</div>
         </div>
@@ -64,24 +81,25 @@ function App() {
         <div className="display">
           {value}
         </div>
+
         <button className='main-btn btn' onClick={() => setValue('')}>AC</button>
         <button className='btn' onClick={() => setValue(value.slice(0, -1))}>DEL</button>
-        <button className='btn' onClick={() => setValue(value + '^2')}>x²</button>
-        <button className='btn' onClick={() => setValue(value + '(')}>(</button>
+        <button className='btn' onClick={() => setValue(value * value)}>x²</button>
+        <button className='btn' onClick={() => setValue((value == '') ? value + '(' : value + '*(')}>(</button>
         <button className='btn' onClick={() => setValue(value + ')')}>)</button>
-        <button className='btn' onClick={() => setValue(value + 'root')}>√</button>
-        <button className='btn' onClick={() => setValue(value + '^')}>^</button>
-        <button className='btn' onClick={() => setValue(value + 'π')}>π</button>
-        <button className='btn' onClick={() => setValue(value + 'sin')}>sin</button>
-        <button className='btn' onClick={() => setValue(value + 'cos')}>cos</button>
-        <button className='btn' onClick={() => setValue(value + 'tan')}>tan</button>
-        <button className='btn' onClick={() => setValue(value + '!')}>x!</button>
+        <button className='btn' onClick={() => setValue(value + 'Math.sqrt(')}>√</button>
+        <button className='btn' onClick={() => setValue(value + 'Math.cbrt(')}>∛</button>
+        <button className='btn' onClick={() => setValue(value + ' 3.14')}>π</button>
+        <button className='btn' onClick={() => setValue(value + 'Math.sin(')}>sin</button>
+        <button className='btn' onClick={() => setValue(value + 'Math.cos(')}>cos</button>
+        <button className='btn' onClick={() => setValue(value + 'Math.tan(')}>tan</button>
+        <button className='btn' onClick={() => fact(value)}>x!</button>
         <button className='btn' onClick={() => setValue(value + '%')}>%</button>
         {/* <button className='btn' onClick={() => setValue(value + '')}></button>
         <button className='btn' onClick={() => setValue(value + '')}></button>
         <button className='btn' onClick={() => setValue(value + '')}></button>
         <button className='btn' onClick={() => setValue(value + '')}></button> */}
-        <button className='main-btn btn' onClick={() => setValue(eval(value))}>=</button>
+        <button className='main-btn btn' onClick={() => handleEvaluate()}>=</button>
         <div className="diff-func">
           <div className="change"  onClick={() => displayType()}>{(view == true) ? 'fx' : '123'}</div>
         </div>
